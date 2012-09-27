@@ -110,11 +110,7 @@ class Twig_Node_Module extends Twig_Node
         $compiler->subcompile($this->getNode('body'));
 
         if (null !== $this->getNode('parent')) {
-            if ($this->getNode('parent') instanceof Twig_Node_Expression_Constant) {
-                $compiler->write("\$this->parent");
-            } else {
-                $compiler->write("\$this->getParent(\$context)");
-            }
+            $compiler->write("\$this->getParent(\$context)");
             $compiler->raw("->display(\$context, array_merge(\$this->blocks, \$blocks));\n");
         }
     }
